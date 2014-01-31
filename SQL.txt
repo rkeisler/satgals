@@ -1,13 +1,13 @@
 # given to http://skyserver.sdss3.org/dr10/en/tools/search/sql.aspx
 SELECT 
    s.z as redshift,
-   p.u, p.g, p.r, p.i, p.z,
+   p.u, p.g, p.r, p.i, p.z, p.ra, p.dec, 
    p.expAB_r, p.petroR50_r, p.petroR90_r
 FROM PhotoObj AS p
    JOIN SpecObj AS s ON s.bestobjid = p.objid
 WHERE
-   s.z <= 0.01
-   AND s.z > 0.005
+   s.z < 0.011
+   AND s.z > 0.004
    AND s.zWarning = 0
    AND p.rerun = 301
    AND type = 3
