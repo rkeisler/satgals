@@ -1,0 +1,10 @@
+#http://skyserver.sdss3.org/dr10/en/tools/search/sql.aspx
+SELECT 
+    p.objid, p.g, p.r, p.i, p.z, p.type, p.run,p.rerun, 
+    znn.z as zNN, znn.zErr as zNN_err, 
+    zrf.z as zRF, zrf.zErr as zRF_err
+FROM dbo.fGetNearbyObjEq(248.087083, 19.826666, 44.0) AS b 
+        JOIN BESTDR10..PhotoObj AS p ON b.objID = p.objID
+        JOIN BESTDR10..PhotoZ AS znn ON b.objID = znn.objID
+        JOIN BESTDR10..PhotoZRF AS zrf ON b.objID = zrf.objID
+WHERE p.r<21.0
